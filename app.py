@@ -7,7 +7,6 @@ from sklearn.metrics import accuracy_score
 import pandas as pd
 from sklearn.decomposition import PCA
 from sklearn.tree import DecisionTreeRegressor
-import pickle
 import numpy as np
 import streamlit as st
 from streamlit_option_menu import option_menu
@@ -20,11 +19,11 @@ diabetes_dataset = pd.read_csv('./dataset/diabetes.csv')
 heart_disease_dataset = pd.read_csv('./dataset/heart.csv') 
 parkinsons_dataset = pd.read_csv('./dataset/parkinsons.csv') 
 
-diabetes_model = pickle.load(open('./saved models/diabetes_model.sav', 'rb'))
+#diabetes_model = pickle.load(open('./saved models/diabetes_model.sav', 'rb'))
 
-heart_disease_model = pickle.load(open('./saved models/heart_disease_model.sav','rb'))
+#heart_disease_model = pickle.load(open('./saved models/heart_disease_model.sav','rb'))
 
-parkinsons_model = pickle.load(open('./saved models/parkinsons_model.sav', 'rb'))
+#parkinsons_model = pickle.load(open('./saved models/parkinsons_model.sav', 'rb'))
 
 
 
@@ -91,7 +90,14 @@ if (selected == 'Diabetes Prediction'):
     
     
     if st.button('Diabetes Test Result'):
-        diab_prediction = diabetes_model.predict([[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]])
+        input_data=(Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age)
+        input_data_as_numpy_array = np.asarray(input_data)
+
+        # reshape the array as we are predicting for one instance
+        input_data_reshaped = input_data_as_numpy_array.reshape(1,-1)
+
+        diab_prediction = classifier.predict(input_data_reshaped)
+        #diab_prediction = diabetes_dataset.predict([[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age].reshape(1,-1)])
         
         if (diab_prediction[0] == 1):
           diab_diagnosis = 'The person is diabetic'
@@ -172,7 +178,14 @@ if (selected == 'Heart Disease Prediction'):
    
     
     if st.button('Heart Disease Test Result'):
-        heart_prediction = heart_disease_model.predict([np.array([age, sex, cp, trestbps, chol, fbs, restecg,thalach,exang,OLDPEAK,slope,ca,thal],dtype=float)])                          
+        input_data=(age, sex, cp, trestbps, chol, fbs, restecg,thalach,exang,OLDPEAK,slope,ca,thal)
+        input_data_as_numpy_array = np.asarray((input_data),dtype=float)
+
+        # reshape the array as we are predicting for one instance
+        input_data_reshaped = input_data_as_numpy_array.reshape(1,-1)
+
+        heart_prediction = classifier.predict(input_data_reshaped)
+        #heart_prediction = heart_disease_model.predict([np.array([age, sex, cp, trestbps, chol, fbs, restecg,thalach,exang,OLDPEAK,slope,ca,thal],dtype=float)])                          
         
         if (heart_prediction[0] == 1):
           heart_diagnosis = 'The person is having heart disease'
@@ -275,7 +288,14 @@ if (selected == "Parkinsons Prediction"):
     
        
     if st.button("Parkinson's Test Result"):
-        parkinsons_prediction = parkinsons_model.predict([[fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ,DDP,Shimmer,Shimmer_dB,APQ3,APQ5,APQ,DDA,NHR,HNR,RPDE,DFA,spread1,spread2,D2,PPE]])                          
+        input_data=(fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ,DDP,Shimmer,Shimmer_dB,APQ3,APQ5,APQ,DDA,NHR,HNR,RPDE,DFA,spread1,spread2,D2,PPE)
+        input_data_as_numpy_array = np.asarray(input_data)
+
+        # reshape the array as we are predicting for one instance
+        input_data_reshaped = input_data_as_numpy_array.reshape(1,-1)
+
+        parkinsons_prediction = classifier.predict(input_data_reshaped)
+        # = parkinsons_model.predict([[fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ,DDP,Shimmer,Shimmer_dB,APQ3,APQ5,APQ,DDA,NHR,HNR,RPDE,DFA,spread1,spread2,D2,PPE]])                          
         
         if (parkinsons_prediction[0] == 1):
           parkinsons_diagnosis = "The person has Parkinson's disease"
