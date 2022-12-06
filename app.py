@@ -7,6 +7,7 @@ from sklearn.metrics import accuracy_score
 import pandas as pd
 from sklearn.decomposition import PCA
 from sklearn.tree import DecisionTreeRegressor
+import pickle
 import numpy as np
 import streamlit as st
 from streamlit_option_menu import option_menu
@@ -15,9 +16,9 @@ import plost
 
 
 # loading the saved models
-diabetes_dataset = pd.read_csv('./dataset/diabetes.csv') 
-heart_disease_dataset = pd.read_csv('./dataset/heart.csv') 
-parkinsons_dataset = pd.read_csv('./dataset/parkinsons.csv') 
+diabetes_dataset = pd.read_csv('./data/diabetes.csv') 
+heart_disease_dataset = pd.read_csv('./data/heart.csv') 
+parkinsons_dataset = pd.read_csv('./data/parkinsons.csv') 
 
 #diabetes_model = pickle.load(open('./saved models/diabetes_model.sav', 'rb'))
 
