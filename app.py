@@ -13,6 +13,7 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 from sklearn.linear_model import LogisticRegression
 import plost
+import streamlit.components.v1 as stc
 
 
 # loading the saved models
@@ -27,7 +28,29 @@ parkinsons_dataset = pd.read_csv('./data/parkinsons.csv')
 #parkinsons_model = pickle.load(open('./saved models/parkinsons_model.sav', 'rb'))
 
 
+HTML_BANNER = """
+    <div style="display:flex;justify-content: center;background-color:#fc4a1a;padding:10px;border-radius:10px;">
+        <div style="margin:0 20px">
+            <img style="width:150px;height:150px;object-fit: contain;" src="https://ucarecdn.com/0416e6a2-8df2-42fb-92c5-c44d3143dea8/" alt="">
+        </div>
+        <div style="padding-bottom:20px;">
+            <h1 style="color:white;text-align:center;">Multiple Disease Prediction System</h1>
+           
+            
+        </div>
+       
 
+        </div>
+    """
+
+stc.html(HTML_BANNER)
+	#link file css
+def local_css(file_name):
+	with open(file_name) as f:
+		st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+
+local_css("style.css")
 # sidebar for navigation
 with st.sidebar:
     
