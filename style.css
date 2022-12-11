@@ -1,8 +1,7 @@
 
 
 
-/* Card */
-/* Adapted from https://startbootstrap.com/theme/sb-admin-2 */
+
 div.css-1r6slb0.e1tzin5v2 {
 background-color: #FFFFFF;
 border: 1px solid #CCCCCC;
@@ -46,9 +45,9 @@ display: none;
 /* Style inputs with type="text", type="email"and textareas */
 input[type=text], input[type=email], textarea {
     width: 100%; /* Full width */
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
     padding: 12px; /* Some padding */ 
-    border: 1px solid #ccc; /* Gray border */
+    /* border: 1px solid #ccc; Gray border */
     border-radius: 4px; /* Rounded borders */
     box-sizing: border-box; /* Make sure that padding and width stays in place */
     margin-top: 6px; /* Add a top margin */
@@ -57,7 +56,7 @@ input[type=text], input[type=email], textarea {
    
   }
   input[type=text]{
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
   }
   /* Style the submit button with a specific background color etc */
   button[type=submit] {
